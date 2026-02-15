@@ -4,8 +4,9 @@
   imports = [ ./hardware-configuration.nix ];
 
   # --- SISTEMA E BOOT ---
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda"; # O disco onde o NixOS está
+  boot.loader.grub.useOSProber = true;
   
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "pt_BR.UTF-8";
