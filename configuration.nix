@@ -61,7 +61,7 @@
   };
 
   # Agente de autenticação
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+  systemd.user.services."polkit-gnome-authentication-agent-1" = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
