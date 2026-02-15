@@ -64,6 +64,7 @@
   systemd.user.services."polkit-gnome-authentication-agent-1" = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
+    security.polkit.enable = true;
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -108,5 +109,5 @@
   ];
 
   # Deixe em 24.11 para evitar problemas, a menos que você queira testar a instável
-  system.stateVersion = "24.11"; 
+  system.stateVersion = "25.11"; 
 }
