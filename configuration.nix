@@ -43,6 +43,9 @@
     pulse.enable = true;
   };
 
+  # --- SEGURANÇA E POLKIT ---
+  security.polkit.enable = true; # Essencial para autenticação de sistema
+
   # --- USUÁRIO ---
   # Troque 'ambys' pelo nome que você usa se for diferente
   users.users.ambys = { 
@@ -64,7 +67,6 @@
   systemd.user.services."polkit-gnome-authentication-agent-1" = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
-    security.polkit.enable = true;
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -72,6 +74,12 @@
       RestartSec = 1;
       TimeoutStopSec = 10;
     };
+  };
+
+# --- COMPATIBILIDADE WAYLAND ---
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";      # Força Wayland em apps Electron (Chrome, VSCode, Discord)
+    MOZ_ENABLE_WAYLAND = "1";  # Força Wayland no Firefox
   };
 
   # --- FONTES ---
