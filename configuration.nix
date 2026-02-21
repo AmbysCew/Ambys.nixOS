@@ -60,15 +60,19 @@ services.printing.enable = true;
     packages = with pkgs; [ kdePackages.kate ];
   };
 
-  # --- PROGRAMAS E GAMES ---
+# --- PROGRAMAS E GAMES ---
   nixpkgs.config.allowUnfree = true;
-  programs.steam.enable = true;
-  programs.firefox.enable = true;
-  programs.niri.enable = true;
-  services.flatpak.enable = true;
+  
+  # Steam configurada corretamente
+  programs.steam = {
+    enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+
+  programs.firefox.enable = true;
+  programs.niri.enable = true;
+  services.flatpak.enable = true;
 
   # Pacotes do sistema
   environment.systemPackages = with pkgs; [
