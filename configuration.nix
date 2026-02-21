@@ -63,7 +63,6 @@ services.printing.enable = true;
 # --- PROGRAMAS E GAMES ---
   nixpkgs.config.allowUnfree = true;
   
-  # Steam configurada corretamente
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
